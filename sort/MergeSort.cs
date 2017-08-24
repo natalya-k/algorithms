@@ -1,4 +1,4 @@
-﻿namespace Algorithms
+namespace Algorithms
 {
     static class MergeSort
     {
@@ -12,7 +12,9 @@
             if (left < right)
             {
                 //int middle = (left + right) / 2;
-                int middle = left + (right - left) / 2; //этот вариант предотвращает переполнение стека при больших значениях left, right
+
+                //этот вариант предотвращает переполнение стека при больших значениях left и right
+                int middle = left + (right - left) / 2;
 
                 Sort(array, left, middle);
                 Sort(array, middle + 1, right);
@@ -29,22 +31,28 @@
             int[] leftHalf = new int[leftLength];
             int[] rightHalf = new int[rightLength];
 
-            int i, j, k = left;
+            //копирование элементов во временные массивы
 
-            //tbd переделать for в while?
+            int i = 0, j = 0, k = left;            
 
-            for (i = 0; k <= middle; i++, k++)
+            while (k <= middle)
             {
                 leftHalf[i] = array[k];
+                i++;
+                k++;
             }
 
-            for (j = 0; k <= right; j++, k++)
+            while (k <= right)
             {
                 rightHalf[j] = array[k];
+                j++;
+                k++;
             }
-            
+
+            //слияние элементов в отсортированном виде
+
             i = j = 0;
-            k = left;
+            k = left;            
 
             while (i < leftHalf.Length && j < rightHalf.Length)
             {
@@ -62,14 +70,20 @@
                 k++;
             }
 
-            for (; i < leftHalf.Length; i++, k++)
+            //копирование оставшейся части элементов
+
+            while (i < leftHalf.Length)
             {
                 array[k] = leftHalf[i];
+                i++;
+                k++;
             }
 
-            for (; j < rightHalf.Length; j++, k++)
+            while (j < rightHalf.Length)
             {
                 array[k] = rightHalf[j];
+                j++;
+                k++;
             }
         }
     }
