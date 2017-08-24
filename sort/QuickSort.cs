@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Algorithms
 {
     static class QuickSort
@@ -28,19 +22,26 @@ namespace Algorithms
 
         private static void Divide(int[] array, int left, int right, ref int pivot)
         {
-            int k = left;
+            //самый правый элемент становится опорным
+            pivot = right;
 
-            for (int i = left; i < right; i++)
+            int i, k = left;
+
+            for (i = left; i < pivot; i++)
             {
-                if (array[i] <= array[right])
+                //все элементы, которые меньше или равны опорному,
+                //перемещаются в левую часть
+
+                if (array[i] <= array[pivot])
                 {
                     Swap(array, k, i);
                     k++;
                 }
             }
 
-            Swap(array, k, right);
+            //опорный элемент встает на свое место
 
+            Swap(array, k, pivot);
             pivot = k;
         }
 
