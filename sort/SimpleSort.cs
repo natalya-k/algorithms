@@ -2,16 +2,16 @@ namespace Algorithms
 {
     static class SimpleSort
     {
-        static void SelectionSort(int[] array)
+        public static void SelectionSort(int[] array)
         {
-            int min;
+            int begin, min, i;
             int temp;
 
-            for (int begin = 0; begin < array.Length - 1; ++begin)
+            for (begin = 0; begin < array.Length - 1; begin++)
             {
                 min = begin;
 
-                for (int i = min + 1; i < array.Length; i++)
+                for (i = min + 1; i < array.Length; i++)
                 {
                     if (array[i] < array[min])
                     {
@@ -25,12 +25,12 @@ namespace Algorithms
             }
         }
 
-        static void InsertionSort(int[] array)
+        public static void InsertionSort(int[] array)
         {
             int current;
-            int i;
+            int begin, i;
 
-            for (int begin = 1; begin < array.Length; ++begin)
+            for (begin = 1; begin < array.Length; begin++)
             {
                 current = array[begin];
 
@@ -46,19 +46,31 @@ namespace Algorithms
             }
         }
 
-        static void BubbleSort(int[] array)
+        public static void BubbleSort(int[] array)
         {
-            for (int end = array.Length - 1; end > 0; --end)
+            int i, j;
+            bool swapped;
+
+            for (i = 0; i < array.Length - 1; i++)
             {
-                for (int i = 0; i < end; ++i)
+                swapped = false;
+
+                for (j = 0; j < array.Length - i - 1; j++)
                 {
-                    if (array[i] > array[i + 1])
+                    if (array[j] > array[j + 1])
                     {
-                        int temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
+                        int temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+
+                        swapped = true;
                     }
                 }
+
+                if (swapped == false)
+                {
+                    break;
+                }                    
             }
         }
     }
