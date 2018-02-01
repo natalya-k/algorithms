@@ -1,11 +1,12 @@
 namespace Algorithms
 {
-    class BinarySearch
+    static class BinarySearch
     {
         public static int? Search(int[] array, int target)
         {
             int begin = 0;
             int end = array.Length - 1;
+
             int guess;
 
             while (end >= begin)
@@ -19,7 +20,8 @@ namespace Algorithms
                 {
                     return guess;
                 }
-                else if (array[guess] > target)
+
+                if (array[guess] > target)
                 {
                     end = guess - 1;
                 }
