@@ -28,9 +28,10 @@ namespace Algorithms
             {
                 if (char.IsLetter(ch))
                 {
+                    //отступ к началу буквенных символов
                     char offset = char.IsUpper(ch) ? 'A' : 'a';
-
-                    char shifted = (char)((ch + shift - offset) % LettersNumber + offset);
+                    
+                    char shifted = (char)((ch - offset + shift) % LettersNumber + offset);
 
                     resultSB.Append(shifted);
                 }
