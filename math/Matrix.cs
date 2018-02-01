@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 
 namespace Algorithms
@@ -26,6 +26,7 @@ namespace Algorithms
 
         public int Rows { get { return items.GetLength(0); } }
         public int Columns { get { return items.GetLength(1); } }
+        public bool IsSquare { get { return Rows == Columns; } }
 
         public static Matrix operator +(Matrix a, Matrix b)
         {
@@ -143,6 +144,42 @@ namespace Algorithms
             Console.WriteLine("Matrix C transposed");
             c.Print();
             Console.WriteLine();
+
+            Matrix diagonal = DiagonalMatrix(5);
+            Console.WriteLine("Diagonal matrix");
+            diagonal.Print();
+            Console.WriteLine();
+
+            Matrix antiDiagonal = AntiDiagonalMatrix(5);
+            Console.WriteLine("AntiDiagonal matrix");
+            antiDiagonal.Print();
+            Console.WriteLine();
+        }
+
+        public static Matrix DiagonalMatrix(int size)
+        {
+            Matrix matrix = new Matrix(size, size);
+
+            for (int row = 0, col = 0; row < matrix.Rows && col < matrix.Columns; row++, col++)
+            {
+                matrix[row, col] = random.Next(1, 10);
+            }
+
+            return matrix; 
+        }
+
+        public static Matrix AntiDiagonalMatrix(int size)
+        {
+            Matrix matrix = new Matrix(size, size);
+
+            int col = matrix.Columns - 1;
+
+            for (int row = 0; row < matrix.Rows && col >= 0; row++, col--)
+            {
+                matrix[row, col] = random.Next(1, 10);
+            }
+
+            return matrix;
         }
 
         public void FillWithRandomValues()
@@ -171,7 +208,7 @@ namespace Algorithms
 
         public void Transpose()
         {
-            if (Rows == Columns)
+            if (IsSquare)
             {
                 for (int row = 0; row < Rows - 1; row++)
                 {
