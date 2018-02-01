@@ -48,30 +48,29 @@ namespace Algorithms
 
         public static void BubbleSort(int[] array)
         {
-            int i, j;
+            int n = array.Length, i;
             bool swapped;
+            int temp;
 
-            for (i = 0; i < array.Length - 1; i++)
+            do
             {
                 swapped = false;
 
-                for (j = 0; j < array.Length - i - 1; j++)
+                for (i = 1; i < n; i++)
                 {
-                    if (array[j] > array[j + 1])
+                    if (array[i - 1] > array[i])
                     {
-                        int temp = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = temp;
+                        temp = array[i];
+                        array[i] = array[i - 1];
+                        array[i - 1] = temp;
 
                         swapped = true;
                     }
                 }
 
-                if (swapped == false)
-                {
-                    break;
-                }                    
-            }
+                n--;
+
+            } while (swapped);
         }
     }
 }
