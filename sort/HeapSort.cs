@@ -1,9 +1,10 @@
-﻿namespace Algorithms
+namespace Algorithms
 {
     public static class HeapSort
     {
         public static void Run(int[] array)
         {
+            //индекс последнего узла, у которого есть хотя бы один потомок
             int begin = array.Length / 2 - 1;
 
             for (int i = begin; i >= 0; i--)
